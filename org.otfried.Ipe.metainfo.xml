@@ -22,7 +22,9 @@
     <category>Graphics</category>
     <category>Qt</category>
   </categories>
-  <content_rating type="oars-1.1"/>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-info">intense</content_attribute>
+  </content_rating>
   <screenshots>
     <screenshot type="default">
       <caption>Drawing basic shapes and typesetting equations in Ipe</caption>
