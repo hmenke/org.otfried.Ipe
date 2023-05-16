@@ -1,7 +1,7 @@
 app-id: org.otfried.Ipe
 
 runtime: org.kde.Platform
-runtime-version: 5.15-22.08
+runtime-version: '6.4'
 sdk: org.kde.Sdk
 
 finish-args:
@@ -63,7 +63,7 @@ modules:
       - /include
       - /share
 
-  - shared-modules/lua5.3/lua-5.3.5.json
+  - shared-modules/lua5.4/lua-5.4.json
 
   - name: enchant
     sources:
@@ -84,6 +84,8 @@ modules:
 
   - name: qtspell
     buildsystem: cmake
+    config-opts:
+      - -DQT_VER:STRING=6
     sources:
       - type: archive
         url: https://github.com/manisandro/qtspell/archive/refs/tags/1.0.1.tar.gz
@@ -102,9 +104,9 @@ modules:
   - name: ipe
     buildsystem: simple
     build-commands:
-      - make -C src IPEPREFIX=$FLATPAK_DEST
-      - make -C src documentation IPEPREFIX=$FLATPAK_DEST
-      - make -C src install IPEPREFIX=$FLATPAK_DEST
+      - make -C src IPEPREFIX=$FLATPAK_DEST MOC=/usr/libexec/moc
+      - make -C src documentation IPEPREFIX=$FLATPAK_DEST MOC=/usr/libexec/moc
+      - make -C src install IPEPREFIX=$FLATPAK_DEST MOC=/usr/libexec/moc
     sources:
       - type: archive
         url: https://github.com/otfried/ipe/releases/download/v7.2.27/ipe-7.2.27-src.tar.gz
@@ -114,8 +116,6 @@ modules:
           project-id: 10261
           stable-only: true
           url-template: https://github.com/otfried/ipe/releases/download/v$version/ipe-$version-src.tar.gz
-      - type: patch
-        path: headers-lookup.patch
       - type: file
         path: org.otfried.Ipe.metainfo.xml
       - type: file
