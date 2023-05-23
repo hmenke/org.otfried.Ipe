@@ -11,6 +11,7 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --filesystem=xdg-documents:rw
+  - --persist=.ipe
   - --env=PATH=/app/bin:/app/texlive/bin/x86_64-linux:/app/texlive/bin/aarch64-linux:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 command: ipe
